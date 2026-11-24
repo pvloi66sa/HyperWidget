@@ -51,8 +51,10 @@ abstract class BaseProvider(private val layout: Int) : AppWidgetProvider() {
     override fun onReceive(ctx: Context, intent: Intent) {
         super.onReceive(ctx, intent)
         when (intent.action) {
-            Intent.ACTION_DATE_CHANGED, Intent.ACTION_TIME_CHANGED, Intent.ACTION_TIMEZONE_CHANGED ->
+            Intent.ACTION_DATE_CHANGED, Intent.ACTION_TIME_CHANGED, Intent.ACTION_TIMEZONE_CHANGED -> {
+                Prefs.sp(ctx).edit().putInt("cal_off", 0).apply()
                 Renderer.updateAll(ctx)
+            }
         }
     }
 }

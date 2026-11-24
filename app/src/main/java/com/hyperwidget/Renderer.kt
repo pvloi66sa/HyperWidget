@@ -25,6 +25,7 @@ object Renderer {
             val ids = mgr.getAppWidgetIds(ComponentName(ctx, cls))
             for (id in ids) mgr.updateAppWidget(id, build(ctx, layout))
         }
+        CalRenderer.updateAll(ctx)
     }
 
     fun build(ctx: Context, layout: Int): RemoteViews {

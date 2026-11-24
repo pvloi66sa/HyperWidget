@@ -197,6 +197,16 @@ class MainActivity : Activity() {
         }
         col.addView(accRow)
 
+        col.addView(label("Widget lịch tháng 2x2", 16f, true))
+        val calSwitch = Switch(this)
+        calSwitch.text = "Hiện lịch âm trong từng ô ngày"
+        calSwitch.isChecked = sp.getBoolean("cal_lunar", true)
+        calSwitch.setOnCheckedChangeListener { _, on ->
+            sp.edit().putBoolean("cal_lunar", on).apply()
+            Renderer.updateAll(this)
+        }
+        col.addView(calSwitch)
+
         val refresh = Button(this)
         refresh.text = "Cập nhật thời tiết ngay"
         refresh.setOnClickListener {
